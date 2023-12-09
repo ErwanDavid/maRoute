@@ -1,0 +1,8 @@
+.innerDiv {
+    display: flex;
+    padding-block: 10px;
+}
+.innerTextFrom {
+    padding-left: 10px;
+    padding-right: 10px;
+}

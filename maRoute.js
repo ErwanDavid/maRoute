@@ -19,22 +19,23 @@ function getDistCar(origin, destination){
     .then((response) => response.json())
     .then((data) => {
         console.log(data);
-        const routeSummary = data.routes[0].sections[0].summary
-        const routeDuration = routeSummary.duration /3600
-        const routeLength = routeSummary.length / 1000
+        var routeSummary = data.routes[0].sections[0].summary
+        var routeDuration = routeSummary.duration /3600     // second to h
+        var routeLength = routeSummary.length / 1000        // m to km
+        var co2Car = routeLength * 130                      // km to co2 using 130 g/km co2
         console.log(routeSummary);
-        dataElem.textContent = `Duration : ${routeDuration} hr- Distance :  ${routeLength} km`;
+        dataElem.textContent = `Duration : ${routeDuration} hr - Distance :  ${routeLength} km  - CO2 :  ${co2Car} g`;
     })
     .catch(handleError);
 }
 
-function populateSelect(selectOrigin, c){
+function populateSelect(selectCurrent, c){
     for (let k in c) {
         console.log(k + ' is ' + c[k]);
         const opt = document.createElement("option");
         opt.value = c[k];
         opt.text = k;
-        selectOrigin.add(opt);
+        selectCurrent.add(opt);
     }
 }
 
@@ -44,10 +45,10 @@ populateSelect(selectOrigin, c);
 populateSelect(selectDest, c);
 
 selectOrigin.addEventListener("change", function() {
-    fromElem.textContent = `From ${selectOrigin.text} ${selectOrigin.value}`;
+    fromElem.textContent = `From ${selectOrigin.options[selectOrigin.selectedIndex].text} ${selectOrigin.value}`;
     getDistCar(selectOrigin.value, selectDest.value);
 });
 selectDest.addEventListener("change", function() {
-    toElem.textContent = `To ${selectDest.text} ${selectDest.value}`;
+    toElem.textContent = `To ${selectDest.options[selectDest.selectedIndex].text} ${selectDest.value}`;
     getDistCar(selectOrigin.value, selectDest.value);
 });

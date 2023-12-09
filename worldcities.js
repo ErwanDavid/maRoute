@@ -1,5 +1,4 @@
 // https://simplemaps.com/data/world-cities
-
 var c = {};
 
 c["toulouse"] = "43.6045,1.4440";
@@ -9,5 +8,5 @@ c["lyon"] = "45.7600,4.8400";
 c["florence"] = "43.7714,11.2542";
 c["boulogne-sur-mer"] = "50.7264,1.6147";
 c["biarritz"] = "43.48,-1.56";
-c["bruxelle"] = "50.8504,4.34878";
+c["bruxelles"] = "50.8504,4.34878";
 
